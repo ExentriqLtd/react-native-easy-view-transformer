@@ -249,7 +249,7 @@ export default class ViewTransformer extends React.Component {
             } else if (Math.abs(dy) > 2 * Math.abs(dx)) {
                 dx = 0;
             }
-            transform.translateX = this.state.translateX + dx / this.state.scale;
+            transform.translateX = this.state.translateX - dx / this.state.scale;
             transform.translateY = this.state.translateY + dy / this.state.scale;
         }
 
