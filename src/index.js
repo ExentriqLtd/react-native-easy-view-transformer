@@ -234,6 +234,9 @@ export default class ViewTransformer extends React.Component {
             let scaleBy = gestureState.pinch / gestureState.previousPinch;
             let pivotX = gestureState.moveX - this.state.pageX;
             let pivotY = gestureState.moveY - this.state.pageY;
+            if(pivotX < 0){
+                pivotX = 0;
+            }
             let rect = transformedRect(
                 transformedRect(
                     this.contentRect(),
