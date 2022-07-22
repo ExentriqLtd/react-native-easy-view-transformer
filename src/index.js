@@ -163,7 +163,6 @@ export default class ViewTransformer extends React.Component {
         if (!this.props.enableTransform) {
             gestureResponder = {};
         }
-
         return (
             <View
                 style={{flex: 1}}
@@ -219,14 +218,15 @@ export default class ViewTransformer extends React.Component {
 
         let dx = gestureState.moveX - gestureState.previousMoveX;
         let dy = gestureState.moveY - gestureState.previousMoveY;
-        if (this.props.enableResistance) {
+        if (this.props.enableResistance && gestureState.numberActiveTouches == 1) {
             let d = this.applyResistance(dx, dy);
             dx = d.dx;
             dy = d.dy;
         }
 
-        if (!this.props.enableTranslate) {
-            dx = dy = 0;
+        if ((!this.props.enableTranslate) || (gestureState.numberActiveTouches > 1)) {
+            dx = 0;
+            dy = 0;
         }
 
         let transform = {};
