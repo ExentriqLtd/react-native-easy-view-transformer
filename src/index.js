@@ -218,15 +218,14 @@ export default class ViewTransformer extends React.Component {
 
         let dx = gestureState.moveX - gestureState.previousMoveX;
         let dy = gestureState.moveY - gestureState.previousMoveY;
-        if (this.props.enableResistance && gestureState.numberActiveTouches == 1) {
+        if (this.props.enableResistance) {
             let d = this.applyResistance(dx, dy);
             dx = d.dx;
             dy = d.dy;
         }
 
-        if ((!this.props.enableTranslate) || (gestureState.numberActiveTouches > 1)) {
-            dx = 0;
-            dy = 0;
+        if (!this.props.enableTranslate) {
+            dx = dy = 0;
         }
 
         let transform = {};
