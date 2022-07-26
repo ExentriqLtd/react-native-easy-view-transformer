@@ -163,7 +163,6 @@ export default class ViewTransformer extends React.Component {
         if (!this.props.enableTransform) {
             gestureResponder = {};
         }
-
         return (
             <View
                 style={{flex: 1}}
